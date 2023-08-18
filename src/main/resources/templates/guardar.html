@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión de artículos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+    <br>
+    <div class="container-sm">
+        <div class="row">
+            <h2 class="text-center">Guardar artículo</h2>
+        </div>
+        <form class="row g-3" th:action="@{/articulos}" th:object="${articulosObj}" method="POST">
+            <div class="col-md-6 form-group">
+                <label for="sku" class="form-label">Sku</label>
+                <input type="number" th:field="*{sku}" class="form-control" id="sku" maxlength="6">
+            </div>
+
+            <div class="col-md-4 form-group">
+                <label for="articulodesc" class="form-label">Artículo</label>
+                <input type="text" th:field="*{articulo}" class="form-control" id="articulodesc" maxlength="15">
+            </div>
+            <div class="col-md-4 form-group">
+                <label for="marca" class="form-label">Marca</label>
+                <input type="text" th:field="*{marca}" class="form-control" id="marca" maxlength="15">
+            </div>
+            <div class="col-md-4 form-group">
+                <label for="modelo" class="form-label">Modelo</label>
+                <input type="text" th:field="*{modelo}" class="form-control" id="modelo" maxlength="20">
+            </div>
+
+
+            <div class="col-md-4 form-group">
+                <label for="departamento" class="form-label">Departamento</label>
+                <select id="departamento" class="form-select" th:field="*{departamento}">
+                    <th:block th:each="departamento1 : ${deptoObj}">
+                        <option th:text="${departamento1.nombre}" th:value="${departamento1.id}"></option>
+                    </th:block>
+                </select>
+            </div>
+
+            <div class="col-md-4 form-group">
+                <label for="clases1" class="form-label">Clase</label>
+                <select id="clases1" class="form-select" th:field="*{clase}">
+                    <th:block th:each="clase1 : ${clasesObj}">
+                        <option th:text="${clase1.nombre}" th:value="${clase1.id}"></option>
+                    </th:block>
+                </select>
+            </div>
+
+            <div class="col-md-4 form-group">
+                <label for="familias" class="form-label">Familia</label>
+                <select id="familias" class="form-select" th:field="*{familia}">
+                    <th:block th:each="familia1 : ${familiaObj}">
+                        <option th:text="${familia1.nombre}" th:value="${familia1.id}"></option>
+                    </th:block>
+                </select>
+            </div>
+
+            <div class="col-md-4 form-group">
+                <label for="cantidad" class="form-label">Cantidad</label>
+                <input  type="number" id="cantidad" th:field="*{cantidad}" class="form-select" min="0" maxlength="9">
+            </div>
+
+            <div class="col-md-4 form-group">
+                <label for="stock" class="form-label">Stock</label>
+                <input  type="number" id="stock" th:field="*{stock}" class="form-select" min="0" maxlength="9">
+            </div>
+
+            <div class="col-12">
+                <button class="btn btn-primary">Guardar</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
